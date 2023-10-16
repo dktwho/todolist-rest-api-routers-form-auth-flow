@@ -10,7 +10,6 @@ const instance = axios.create({
 })
 
 
-
 // auth
 export const authAPI = {
     login(data: LoginDataType) {
@@ -19,7 +18,6 @@ export const authAPI = {
         }>>, LoginDataType>('auth/login', data);
     }
 }
-
 
 // api
 export const todolistsAPI = {

@@ -8,9 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from 'formik';
-import {useAppDispatch, useAppSelector} from "../../app/store";
-import {TodolistDomainType} from "../TodolistsList/todolists-reducer";
-import {TasksStateType} from "../TodolistsList/tasks-reducer";
+import {useAppDispatch} from "../../app/store";
 import { loginTC } from './auth-reducer';
 
 type FormikErrorType = {
@@ -25,9 +23,6 @@ export type LoginDataType = {
     rememberMe: boolean
 }
 export const Login = () => {
-
-    // const todolists = useAppSelector<Array<TodolistDomainType>>(state => state.todolists)
-
     const dispatch = useAppDispatch()
 
     const formik = useFormik({
@@ -51,8 +46,8 @@ export const Login = () => {
             return errors
         },
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 3));
-
+            // alert(JSON.stringify(values, null, 3));
+            dispatch(loginTC(values))
             formik.resetForm();
         },
     })
