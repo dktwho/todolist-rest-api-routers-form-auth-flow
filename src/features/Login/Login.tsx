@@ -8,7 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from 'formik';
-import {AppRootStateType, useAppDispatch, useAppSelector} from "../../app/store";
+import { useAppDispatch, useAppSelector} from "../../app/store";
 import {loginTC} from './auth-reducer';
 import {Navigate} from "react-router-dom";
 
