@@ -9,14 +9,24 @@ const instance = axios.create({
     }
 })
 
+type UserDataType = {
+    id: number,
+    email: string,
+    login: string
+}
+
 
 // auth
 export const authAPI = {
+    me() {
+        return instance.get<ResponseType<UserDataType>>('auth/me')
+    },
     login(data: LoginDataType) {
         return instance.post<ResponseType<{ userId: number }>, AxiosResponse<ResponseType<{
             userId: number
         }>>, LoginDataType>('auth/login', data);
     }
+
 }
 
 // api
