@@ -67,7 +67,9 @@ export const Login = () => {
                                    value={formik.values.password}
                         />
                         {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
-                        <FormControlLabel label={'Remember me'} control={<Checkbox/>}/>
+                        <FormControlLabel label={'Remember me'} control={<Checkbox name='rememberMe'
+                                                                                   onChange={formik.handleChange}
+                                                                                   value={formik.values.rememberMe}/>}/>
                         <Button type={'submit'} variant={'contained'} color={'primary'}>
                             Login
                         </Button>
