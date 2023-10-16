@@ -37,6 +37,7 @@ export const Login = () => {
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 3));
+            formik.resetForm();
         },
     })
 
