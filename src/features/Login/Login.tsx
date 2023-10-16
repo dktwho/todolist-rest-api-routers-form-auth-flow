@@ -30,7 +30,7 @@ export const Login = () => {
             }
             if (!values.password) {
                 errors.password = 'Required'
-            } else if(values.password.length < 5) {
+            } else if (values.password.length < 5) {
                 errors.password = 'Password length must be more 5 symbols'
             }
             return errors
@@ -62,7 +62,8 @@ export const Login = () => {
                                    value={formik.values.email}
                                    onBlur={formik.handleBlur}
                         />
-                        {formik.errors.email && <div style={{color: 'red'}}>{formik.errors.email}</div>}
+                        {formik.touched.email && formik.errors.email &&
+                            <div style={{color: 'red'}}>{formik.errors.email}</div>}
                         <TextField type="password"
                                    label="Password"
                                    margin="normal"
@@ -71,7 +72,8 @@ export const Login = () => {
                                    value={formik.values.password}
                                    onBlur={formik.handleBlur}
                         />
-                        {formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
+                        {formik.touched.password && formik.errors.password &&
+                            <div style={{color: 'red'}}>{formik.errors.password}</div>}
                         <FormControlLabel label={'Remember me'} control={<Checkbox name='rememberMe'
                                                                                    onChange={formik.handleChange}
                                                                                    value={formik.values.rememberMe}/>}/>
