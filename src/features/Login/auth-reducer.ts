@@ -1,5 +1,10 @@
 import {Dispatch} from 'redux'
-import {SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType} from '../../app/app-reducer'
+import {
+    SetAppErrorActionType,
+    setAppIsInitializedAC,
+    setAppStatusAC,
+    SetAppStatusActionType, SetIsInitalizedActionType
+} from '../../app/app-reducer'
 import {authAPI} from "../../api/todolists-api";
 import {LoginDataType} from "./Login";
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
@@ -49,11 +54,15 @@ export const initializeAppTC = () => async (dispatch: Dispatch) => {
         }
     } catch (e) {
         handleServerNetworkError((e as { message: string }), dispatch)
+    } finally {
+        dispatch(setAppIsInitializedAC(true))
     }
 }
 
 
-
-
 // types
-type ActionsType = ReturnType<typeof setIsLoggedInAC> | SetAppStatusActionType | SetAppErrorActionType
+type ActionsType =
+    ReturnType<typeof setIsLoggedInAC>
+    | SetAppStatusActionType
+    | SetAppErrorActionType
+    | SetIsInitalizedActionType
