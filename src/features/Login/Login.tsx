@@ -56,6 +56,7 @@ export const Login = () => {
                                    onChange={formik.handleChange}
                                    value={formik.values.email}
                         />
+                        {formik.errors.email ? <div style={{color: 'red'}}>{formik.errors.email}</div> : null}
                         <TextField type="password"
                                    label="Password"
                                    margin="normal"
