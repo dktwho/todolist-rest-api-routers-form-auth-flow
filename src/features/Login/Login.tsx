@@ -27,6 +27,8 @@ export const Login = () => {
                 errors.email = 'Required'
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
                 errors.email = 'Invalid email address'
+            } else if (values.password.length < 3) {
+                errors.password = 'Password length must be more 3 symbols'
             }
             return errors
         },
@@ -64,6 +66,7 @@ export const Login = () => {
                                    onChange={formik.handleChange}
                                    value={formik.values.password}
                         />
+                        {formik.errors.password ? <div style={{color: 'red'}}>{formik.errors.password}</div> : null}
                         <FormControlLabel label={'Remember me'} control={<Checkbox/>}/>
                         <Button type={'submit'} variant={'contained'} color={'primary'}>
                             Login
