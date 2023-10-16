@@ -8,13 +8,28 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from 'formik';
+import {useAppDispatch, useAppSelector} from "../../app/store";
+import {TodolistDomainType} from "../TodolistsList/todolists-reducer";
+import {TasksStateType} from "../TodolistsList/tasks-reducer";
+import { loginTC } from './auth-reducer';
 
 type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
 }
+
+export type LoginDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
 export const Login = () => {
+
+    // const todolists = useAppSelector<Array<TodolistDomainType>>(state => state.todolists)
+
+    const dispatch = useAppDispatch()
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -37,6 +52,7 @@ export const Login = () => {
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 3));
+
             formik.resetForm();
         },
     })
@@ -78,6 +94,7 @@ export const Login = () => {
                         {formik.touched.password && formik.errors.password &&
                             <div style={{color: 'red'}}>{formik.errors.password}</div>}
                         <FormControlLabel label={'Remember me'}
+                                          checked={formik.values.rememberMe}
                                           control={<Checkbox{...formik.getFieldProps('rememberMe')}/>}/>
                         <Button type={'submit'} variant={'contained'} color={'primary'}>
                             Login
